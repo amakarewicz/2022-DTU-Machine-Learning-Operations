@@ -157,7 +157,7 @@ Lets take a look at how a github workflow file is organized:
 
        macOS            | Linux (*typical) | Windows
        -----------------|------------------|----------
-       ~/Library/Caches | ~/.cache         |	{user}/AppData/Local
+       ~/Library/Caches | ~/.cache         | {user}/AppData/Local
 
        Find the file. The content should look similar to this (only some fields are shown):
 

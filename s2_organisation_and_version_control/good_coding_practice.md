@@ -124,9 +124,22 @@ For this reason `import` statements is something we also want to take care of, b
 
    and check how the imports were sorted.
 
-Finally, we can also configure `black`, `isort` ect. to our specific needs. For example the recommended line length
-in `pep8` is 79 characters, which by many is considered very restrictive. To customize this we can create a `.flake8`
-file to tell `flake8` exactly how it should check our code:
+Finally, we can also configure `black`, `isort` etc. to our specific needs. All the different frameworks can be
+configured directly from the command line. For example the recommended line length in `pep8` is 79 characters, which by
+many is considered very restrictive. If we wanted tell `flake8` and `black` to only error and correct code with a line
+length above 100 we could run the following commands
+
+```bash
+# the . indicates that
+flake8 . --max-line-length 100
+black . --line-length 100
+```
+
+While this is nice, it is much better to put such configurations into special python configuration files. The two
+commonly used are [setup.cfg](https://setuptools.pypa.io/en/latest/userguide/declarative_config.html) and
+[pyproject.toml](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/). For example, when you run
+`flake8` it will automatically look for a `setup.cfg` file in the current folder and apply those configs. The
+corresponding `setup.cfg` file to the command above would be
 
 ```yaml
 [flake8]
@@ -135,14 +148,15 @@ ignore = W503 # W503: Line break occurred before binary operator
 max-line-length = 100
 ```
 
-1. Add the above code snippet to a file named `.flake8` in your project. Add a line with a length longer than the
+1. Add the above code snippet to a file named `setup.cfg` in your project. Add a line with a length longer than the
    standard 79 characters but below 100 and run `flake8` again to check that you get no error.
 
 2. To make sure that your formatter still does not try to format to 79 character length, add a `pyproject.toml` file to
-   your project where you customize the rules for the different formatters (Hint: Google is your friend). Again create
-   a line above 79 but below 100 characters and check that it is not being formatted.
+   your project where you customize the rules for the different formatters. For `black` you can look at this
+   [page](https://black.readthedocs.io/en/stable/usage_and_configuration/the_basics.html) on how to configure the file
+   Again create a line above 79 but below 100 characters and check that it is not being formatted.
 
-3. (Optional) Experiment further with the customization of `flake8`, `black` ect. Especially it may be worth looking
+3. (Optional) Experiment further with the customization of `flake8`, `black` etc. Especially it may be worth looking
     into the `include` and `exclude` keywords for specifying which files should actually be formatted.
 
 ## Typing
@@ -187,6 +201,19 @@ from typing import Union
 def add2(x: Union[int, float, Tensor], y: Union[int, float, Tensor]) -> Union[int, float, Tensor]:
    return x+y
 ```
+
+Since `Python 3.10` type expressions have been added to the language, such that `A | B | ...` can be written instead of
+`Union[A, B, ...]` and instead of `Optional[A]` you can write `A | None`. The above example could, therefore, be
+written as:
+
+```python
+from torch import Tensor  # note it is Tensor with upper case T. This is the base class of all tensors
+def add2(x: int | float | Tensor, y: int | float | Tensor) -> int | float | Tensor:
+   return x+y
+```
+
+The type expressions does not need an import statement and might make it simpler to read for complex types, however, it
+is not fully backwards compatible.
 
 Finally, since this is a very generic function it also works on `numpy` arrays ect. we can always default to the `Any`
 type if we are not sure about all the specific types that a function can take
