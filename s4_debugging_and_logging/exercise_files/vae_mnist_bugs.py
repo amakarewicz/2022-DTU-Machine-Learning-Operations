@@ -10,10 +10,10 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torchvision.datasets import MNIST
 from torchvision.utils import save_image
-
+import pdb
 # Model Hyperparameters
 dataset_path = 'datasets'
-cuda = True
+cuda = True 
 DEVICE = torch.device("cuda" if cuda else "cpu")
 batch_size = 100
 x_dim  = 784
@@ -21,7 +21,7 @@ hidden_dim = 400
 latent_dim = 20
 lr = 1e-3
 epochs = 20
-
+pdb.set_trace()
 
 # Data loading
 mnist_transform = transforms.Compose([transforms.ToTensor()])
@@ -67,7 +67,7 @@ class Decoder(nn.Module):
         h     = torch.relu(self.FC_hidden(x))
         x_hat = torch.sigmoid(self.FC_output(h))
         return x_hat
-    
+pdb.set_trace()   
     
 class Model(nn.Module):
     def __init__(self, Encoder, Decoder):
@@ -80,6 +80,7 @@ class Model(nn.Module):
         x_hat            = self.Decoder(z)
         
         return x_hat, mean, log_var
+pdb.set_trace()
     
 encoder = Encoder(input_dim=x_dim, hidden_dim=hidden_dim, latent_dim=latent_dim)
 decoder = Decoder(latent_dim=latent_dim, hidden_dim = hidden_dim, output_dim = x_dim)

@@ -1,0 +1,42 @@
+{
+    "os": "Windows-10-10.0.22000-SP0",
+    "python": "3.10.8",
+    "heartbeatAt": "2023-01-11T21:35:33.549757",
+    "startedAt": "2023-01-11T21:35:32.679745",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "c:\\Users\\agama\\Documents\\DTU\\sem_1\\MLOps\\2022-DTU-Machine-Learning-Operations\\s4_debugging_and_logging\\exercise_files\\wandb_tester.py",
+    "codePath": "s4_debugging_and_logging\\exercise_files\\wandb_tester.py",
+    "git": {
+        "remote": "https://github.com/amakarewicz/2022-DTU-Machine-Learning-Operations.git",
+        "commit": "e167f4ffbc9c5fab927703376aafe6aff877a578"
+    },
+    "email": "43831153+amakarewicz@users.noreply.github.com",
+    "root": "C:/Users/agama/Documents/DTU/sem_1/MLOps/2022-DTU-Machine-Learning-Operations",
+    "host": "DESKTOP-QEE21EV",
+    "username": "agama",
+    "executable": "C:\\Users\\agama\\anaconda3\\envs\\mlops\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1600.0,
+        "min": 0.0,
+        "max": 1800.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1600.0,
+            "min": 0.0,
+            "max": 1800.0
+        }
+    ],
+    "disk": {
+        "total": 225.70995712280273,
+        "used": 222.4204444885254
+    },
+    "memory": {
+        "total": 7.902618408203125
+    }
+}
